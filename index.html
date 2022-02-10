@@ -1,20 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessibility Test</title>
-</head>
-<body>
-    <h2>Simple Accessibility Test</h2>
-    <a href="#">Tutorials</a> <a href="#">References</a> <a href="#">Exercise</a> <a href="#">Videos</a> <a href="#">Menu</a>
-    <br>
-    <a href="#">login</a>
-    <br>
-    <a href="#">Paid Courses</a> <a href="#">New</a>
-    <br>
-    <button>OK</button> <button>Cancel</button>
-    
-</body>
+    <style>
+      *:focus {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <main role="contentinfo" class="model">
+      <h2>Simple Accessibility Test</h2>
+      <a class="first" href="#">Tutorials</a> <a href="#">References</a>
+      <a href="#">Exercise</a> <a href="#">Videos</a> <a href="#">Menu</a>
+      <br />
+      <a href="#">login</a>
+      <br />
+      <a href="#">Paid Courses</a> <a href="#">New</a>
+      <br />
+      <button class="ok">OK</button> <button class="last cancel">Cancel</button>
+    </main>
+    <script>
+      var focusableElements = document.querySelectorAll(
+        'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable], audio[controls], video[controls], summary, [tabindex^="0"], [tabindex^="1"], [tabindex^="2"], [tabindex^="3"], [tabindex^="4"], [tabindex^="5"], [tabindex^="6"], [tabindex^="7"], [tabindex^="8"], [tabindex^="9"]'
+      );
+      focusableElements = Array.prototype.slice.call(focusableElements);
+      // var previouslyFocused = document.activeElement;
+
+      //   model.addEventListener("keydown", trap);
+
+      var model = document.querySelector(".model");
+      var firstElement = focusableElements[0];
+      var lastElement = focusableElements[focusableElements.length - 1];
+      console.log(firstElement, lastElement);
+
+      var ok = document.querySelector(".ok");
+      var cancel = document.querySelector(".cancel");
+
+      document.addEventListener("keydown", check);
+
+      function check(event) {
+        console.log(event.keyCode);
+        if (event.keyCode === 13) {
+          console.log("enter");
+          ok.focus();
+        } else if (event.keyCode === 8) {
+          console.log("backspace");
+          cancel.focus();
+        } else {
+          fun();
+          console.log(document.activeElement);
+        }
+      }
+
+      function fun() {
+        model.addEventListener("keydown", trap);
+        function trap(event) {
+          if (event.keyCode === 9) {
+            // Shift is held down
+            if (event.shiftKey) {
+              if (document.activeElement === firstElement) {
+                event.preventDefault();
+                lastElement.focus();
+              }
+            } else {
+              if (document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+              }
+            }
+          }
+        }
+      }
+
+      //   console.log(firstElement, lastElement)
+      //   console.log(document.activeElement)
+
+      //   function trap(event) {
+      //   if (event.keyCode === 9) {
+      //     // Shift is held down
+      //     if (event.shiftKey) {
+      //       if (document.activeElement === firstElement) {
+      //         event.preventDefault();
+      //         lastElement.focus();
+      //       }
+      //     }
+      //   } else {
+      //     if (document.activeElement === lastElement) {
+      //       event.preventDefault();
+      //       firstElement.focus();
+      //     }
+      //   }
+      //   }
+    </script>
+  </body>
 </html>
