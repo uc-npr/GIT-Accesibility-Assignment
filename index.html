@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessibility Test</title>
     <style>
+
+        * {
+            margin: 2px;
+            padding: 1px;
+        }
       *:focus {
         border: 1px solid black;
       }
@@ -74,26 +79,6 @@
           }
         }
       }
-
-      //   console.log(firstElement, lastElement)
-      //   console.log(document.activeElement)
-
-      //   function trap(event) {
-      //   if (event.keyCode === 9) {
-      //     // Shift is held down
-      //     if (event.shiftKey) {
-      //       if (document.activeElement === firstElement) {
-      //         event.preventDefault();
-      //         lastElement.focus();
-      //       }
-      //     }
-      //   } else {
-      //     if (document.activeElement === lastElement) {
-      //       event.preventDefault();
-      //       firstElement.focus();
-      //     }
-      //   }
-      //   }
     </script>
   </body>
 </html>
