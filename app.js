@@ -13,8 +13,7 @@ focusableElements = Array.prototype.slice.call(focusableElements);
 var firstElement = focusableElements[0];
 var lastElement = focusableElements[focusableElements.length - 1];
 
-// heading.focus();
-
+heading.focus();
 // Event Listener start
 document.addEventListener("keydown", check);
 
