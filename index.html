@@ -30,7 +30,7 @@
       <a href="#">Paid Courses</a> <a href="#">New</a>
       <br />
       <button class="ok">OK</button> <button class="last cancel">Cancel</button>
-      <p>Note: use "Enter" key for ok button and "Backspace" for Cancel button</p>
+      <p>Note: use "G" key for ok button and "Backspace" for Cancel button</p>
     </main>
     <script>
       var focusableElements = document.querySelectorAll(
@@ -51,7 +51,7 @@
       function check(event) {
         console.log(event.keyCode);
         fun();
-        if (event.keyCode === 13) {
+        if (event.keyCode === 71) {
           console.log("enter");
           ok.focus();
         } else if (event.keyCode === 8) {
